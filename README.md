@@ -4,9 +4,9 @@ A narrowly scoped client-side compatibility patch for:
 
 - Minecraft 1.20.1
 - Forge 47.x
-- Voxy 0.2.13-alpha
+- Voxy 0.2.13-alpha 1.20.1 Port
 - Oculus 1.8.x (optional)
-- Sable 2.0.5+ (optional)
+- Sable 2.0.5 1.20.1 Port (optional)
 
 ## Fixed issue
 
