@@ -16,6 +16,22 @@ The patch observes the actual Oculus `destroyPipeline` event and requests exactl
 
 This project does not modify Voxy's source code, cancel rendering, suppress exceptions, or disable any feature.
 
+Voxy 0.2.13 also finishes its opaque LOD pass with `glUseProgram(0)` instead of
+restoring the OpenGL program that was active when it entered. Oculus caches the
+last shader object it applied, so that raw unbind can leave the Java cache and
+the real OpenGL state inconsistent. The next uniform upload can then produce a
+high-volume `No active program` error flood. The patch captures the actual
+entry program once per Voxy pass and restores it at Voxy's existing cleanup
+call. It does not suppress OpenGL diagnostics or skip uniform uploads.
+
+As a circuit breaker, the patch also rate-limits only the exact NVIDIA
+`No active program` debug text after preserving the first message in each
+10-second window. It emits a suppression count for a continuing flood. Other
+OpenGL errors, including framebuffer depth-format errors that share error id
+1282, remain untouched. This guard protects the log and render thread if a
+second renderer violates the same state boundary; it is not presented as a
+substitute for the program restoration above.
+
 Voxy 0.2.13 also clears texture units 0 through 11 after its opaque LOD pass.
 Flywheel instancing expects the surrounding level renderer to leave the block
 atlas bound on texture unit 0, so animated Create parts could disappear when
