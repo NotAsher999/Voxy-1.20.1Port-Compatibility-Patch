@@ -1,0 +1,4 @@
+{
+  "message.voxy_compat_patch.voxy_enabled": "已为当前世界开启 Voxy 渲染；兼容性轮询已停止。",
+  "message.voxy_compat_patch.voxy_enable_failed": "无法开启 Voxy 渲染；请检查 latest.log。"
+}

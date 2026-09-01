@@ -50,6 +50,24 @@ The Sable integration is reflective and optional. No Sable source, compiled
 class, resource, coordinate rule, or other implementation is copied into this
 project or its jar.
 
+## Per-world Voxy activation
+
+Voxy 0.2.13 can occasionally load with both `enabled` and `enableRendering`
+stored as `true` while its world instance or renderer was never created. Merely
+rewriting those booleans does not replay Voxy's runtime lifecycle and therefore
+does not make LOD rendering start.
+
+While a real client world is open, this patch checks at a low frequency (once
+every 40 client ticks) whether Voxy is available, its client session exists,
+and both the world instance and renderer are active. If either runtime object is
+missing, it invokes Voxy's own two settings-page activation paths in their
+normal order. It then verifies the actual instance and renderer, saves the two
+settings, shows an in-game confirmation, and stops polling for that world.
+
+No activation polling runs on the title screen. Leaving or switching worlds
+resets the one-shot state for the next world. The patch does not bypass Voxy's
+availability check or replace its renderer creation logic.
+
 ## Build
 
 On Windows, double-click `build.cmd`. The finished jar is written to `dist`.

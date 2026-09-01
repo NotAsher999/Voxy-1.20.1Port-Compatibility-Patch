@@ -1,0 +1,4 @@
+{
+  "message.voxy_compat_patch.voxy_enabled": "Voxy rendering is active for this world; compatibility polling has stopped.",
+  "message.voxy_compat_patch.voxy_enable_failed": "Voxy rendering could not be activated; check latest.log for details."
+}
