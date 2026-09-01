@@ -58,3 +58,18 @@ rejected configuration-lock Mixins.
 The final acceptance gate remains a production-client run: enter a world with
 Voxy initially inactive, wait for the translated confirmation, and verify that
 LOD rendering actually begins. Build success alone is not runtime acceptance.
+
+## Candidate checkpoint
+
+- Version: `1.0.3`
+- Production jar SHA-256:
+  `110C229D9A66A3B1C05F2291152EDFC98357C8465F5F8AA39DA75A67F67E6443`
+- Automated validation: 8 suites / 15 tests, with no failures, errors, or
+  skipped tests
+- Packaging validation: Java 17 bytecode, translated messages, activation
+  bridge, world service, and the original four compatibility Mixins present;
+  rejected configuration-lock classes absent
+- Deployment: installed as the only active compatibility-patch jar in the
+  DeceasedCraft client; rejected `1.0.2` preserved in the repository-local
+  deployment backup
+- Runtime status: pending user world-entry and visible-LOD acceptance
