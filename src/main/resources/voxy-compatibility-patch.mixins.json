@@ -6,6 +6,9 @@
   "client": [
     "GlDebugFloodGuardMixin",
     "OculusPipelineManagerMixin",
+    "VoxyClientConfigLifecycleMixin",
+    "VoxyConfigPersistenceMixin",
+    "VoxyConfigScreenPagesMixin",
     "VoxyIngestServiceMixin",
     "VoxyRenderSystemTextureBoundaryMixin"
   ],

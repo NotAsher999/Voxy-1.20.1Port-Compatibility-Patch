@@ -50,6 +50,15 @@ The Sable integration is reflective and optional. No Sable source, compiled
 class, resource, coordinate rule, or other implementation is copied into this
 project or its jar.
 
+Voxy 0.2.13 stores its two top-level activation switches as `enabled` and
+`enable_rendering` in `config/voxy-config.json`. If either value is loaded or
+saved as `false`, Voxy skips creation of its world instance or renderer on the
+next session. The patch keeps these two switches enabled at Voxy's own config
+load/save boundaries, rejects only settings-screen requests that would shut
+them off, and persists the corrected values after Voxy capability
+initialization. It does not force Voxy past its native GPU, compute, depth
+sampler, or exclusive-lock availability checks.
+
 ## Build
 
 On Windows, double-click `build.cmd`. The finished jar is written to `dist`.
